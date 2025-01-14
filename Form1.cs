@@ -1,8 +1,7 @@
 ﻿using LudziePolska.Classes;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace LudziePolska
@@ -24,139 +23,72 @@ namespace LudziePolska
             skinColors = new List<string>();
             proffesions = new List<string>();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(GlobalVars.GetConnectionString());
-            try
-            {
-                con.Open();
-            }
-            catch
-            {
-                MessageBox.Show("Brak połączenia z bazą danych. Sprawdź parametry połączenia.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            LoadZawody(con);
-            LoadKolorSkory(con);
-            LoadWojewodztwa(con);
-            LoadPeopleFromBase(con);
+            LoadProffesions();
+            LoadKolorSkory();
+            LoadWojewodztwa();
+            LoadPeopleFromBase();
         }
-
-        private void LoadWojewodztwa(SqlConnection con)
+        private void LoadWojewodztwa()
         {
-            string querry = "select * from wojewodztwa order by id_wojewodztwa";
-            SqlCommand command = new SqlCommand(querry, con);
-            DataTable dt = new DataTable();
-            dt.Load(command.ExecuteReader());
-
-            //copy data to list of person
-            foreach (DataRow row in dt.Rows)
-            {
-                provinces.Add(new Province
-                {
-                    ID_Wojewodztwa = Convert.ToInt32(row["ID_Wojewodztwa"]),
-                    ProvinceName = row["NazwaWojewodztwa"].ToString(),
-                });
-            }
+            provinces.Clear();
+            provinces = BaseQuerries.Querries.GetProvinces();
         }
-
-        private void LoadKolorSkory(SqlConnection con)
+        private void LoadKolorSkory()
         {
+            skinColors.Clear();
+            skinColors = BaseQuerries.Querries.GetSkinColors();
             skinColorCombo.Items.Clear();
-            string querry = "select distinct kolorskory from osoby";
-            SqlCommand command = new SqlCommand(querry, con);
-            DataTable dt = new DataTable();
-            dt.Load(command.ExecuteReader());
-
             skinColorCombo.Items.Add("Wszystkie");
-            //copy data to list of person
-            foreach (DataRow row in dt.Rows)
+            foreach (string color in skinColors)
             {
-                skinColors.Add(row[0].ToString());
-                skinColorCombo.Items.Add(row[0].ToString());
+                skinColorCombo.Items.Add(color);
             }
             skinColorCombo.SelectedIndex = 0;
-            ExtensionMethods.LogTransaction(querry);
         }
-        private void LoadZawody(SqlConnection con)
+        private void LoadProffesions()
         {
+            proffesions.Clear();
+            proffesions = BaseQuerries.Querries.GetProffesions();
             proffessionCombo.Items.Clear();
-            string querry = "select distinct zawod from osoby";
-            SqlCommand command = new SqlCommand(querry, con);
-            DataTable dt = new DataTable();
-            dt.Load(command.ExecuteReader());
-
             proffessionCombo.Items.Add("Wszystkie");
-            //copy data to list of person
-            foreach (DataRow row in dt.Rows)
+            foreach (string proffesion in proffesions)
             {
-                proffesions.Add(row[0].ToString());
-                proffessionCombo.Items.Add(row[0].ToString());
+                proffessionCombo.Items.Add(proffesion);
             }
             proffessionCombo.SelectedIndex = 0;
-            ExtensionMethods.LogTransaction(querry);
         }
-
-        private void LoadPeopleFromBase(SqlConnection con)
+        private void LoadPeopleFromBase()
         {
-            //read data from database
-            string querry = "SELECT ID_Osoby,Imie, Nazwisko, PESEL, DataUrodzenia, KolorSkory, Wojewodztwa.NazwaWojewodztwa, Zawod FROM Osoby INNER JOIN Wojewodztwa ON Osoby.ID_Wojewodztwa = Wojewodztwa.ID_Wojewodztwa";
-            SqlCommand command = new SqlCommand(querry, con);
-            DataTable dt = new DataTable();
-            dt.Load(command.ExecuteReader());
-
-            //copy data to list of person
-            foreach (DataRow row in dt.Rows)
-            {
-                people.Add(new Person
-                {
-                    ID_Osoby = Convert.ToInt32(row["ID_Osoby"]),
-                    Imie = row["Imie"].ToString(),
-                    Nazwisko = row["Nazwisko"].ToString(),
-                    Pesel = row["PESEL"].ToString(),
-                    DataUrodzenia = Convert.ToDateTime(row["DataUrodzenia"]),
-                    KolorSkory = row["KolorSkory"].ToString(),
-                    NazwaWojewodztwa = row["NazwaWojewodztwa"].ToString(),
-                    Zawod = row["Zawod"].ToString(),
-                });
-            }
+            people.Clear();
+            people = BaseQuerries.Querries.GetPoeple();
             peopleDGV.DataSource = people;
-
             noOfRecordsLbl.Text = $"Ilość rekordów: {people.Count}";
-
             //make datagridview columns readonly
             foreach (DataGridViewColumn column in peopleDGV.Columns)
                 column.ReadOnly = true;
-
-            ExtensionMethods.LogTransaction(querry);
         }
-
         private void proffessionCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void skinColorCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void dateFromPicker_ValueChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void dateToPicker_ValueChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void peselTxt_TextChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void FilterList()
         {
             List<Person> peopleFiltered = new List<Person>();
@@ -183,17 +115,14 @@ namespace LudziePolska
             peopleDGV.DataSource = peopleFiltered;
             noOfRecordsLbl.Text = $"Ilość rekordów: {peopleFiltered.Count}";
         }
-
         private void nameTxt_TextChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void provinceTxt_TextChanged(object sender, EventArgs e)
         {
             FilterList();
         }
-
         private void removeFiltersBtn_Click(object sender, EventArgs e)
         {
             nameTxt.Text = string.Empty;
@@ -205,26 +134,13 @@ namespace LudziePolska
             dateToPicker.Value = DateTime.Today;
             FilterList();
         }
-
         private void addBtn_Click(object sender, EventArgs e)
         {
             AddPersonForm addPersonForm = new AddPersonForm(skinColors, proffesions, provinces);
             addPersonForm.ShowDialog();
-            SqlConnection con = new SqlConnection(GlobalVars.GetConnectionString());
-            try
-            {
-                con.Open();
-            }
-            catch
-            {
-                MessageBox.Show("Brak połączenia z bazą danych. Sprawdź parametry połączenia.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            people.Clear();
-            LoadPeopleFromBase(con);
+            LoadPeopleFromBase();
             FilterList();
         }
-
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             if (peopleDGV.SelectedRows.Count <= 0)
@@ -233,27 +149,83 @@ namespace LudziePolska
             if (MessageBox.Show("Czy na pewno chcesz usunąć zaznaczone wiersze?", "Pyanie", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
-            SqlConnection con = new SqlConnection(GlobalVars.GetConnectionString());
+            BaseQuerries.Querries.DeleteSelected(peopleDGV.SelectedRows);
+            LoadPeopleFromBase();
+            FilterList();
+        }
+        private void showLogFile_Click(object sender, EventArgs e)
+        {
             try
             {
-                con.Open();
+                Process.Start("log.txt");
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Brak połączenia z bazą danych. Sprawdź parametry połączenia.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Wystąpił błąd podczas otwierania pliku logu." + Environment.NewLine + ex.ToString(), "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+        private void exportProvinceBtn_Click(object sender, EventArgs e)
+        {
+            ExportProvinceForm exportProvinceForm = new ExportProvinceForm(provinces, people);
+            exportProvinceForm.ShowDialog();
+        }
+        private void exportSelectedBtn_Click(object sender, EventArgs e)
+        {
+            if (peopleDGV.SelectedRows.Count <= 0)
+                return;
+
+            buttonsPanel.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
+
+            List<Person> selectedPerson = new List<Person>();
+
             foreach (DataGridViewRow row in peopleDGV.SelectedRows)
             {
-                int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                string querry = "delete from osoby where id_osoby=@id";
-                SqlCommand command = new SqlCommand(querry, con);
-                command.Parameters.AddWithValue("@id", id);
-                command.ExecuteNonQuery();
-                ExtensionMethods.LogTransaction(querry);
+                selectedPerson.Add(new Person
+                {
+                    ID_Osoby = Convert.ToInt32(row.Cells[0].Value.ToString()),
+                    Imie = row.Cells[1].Value.ToString(),
+                    Nazwisko = row.Cells[2].Value.ToString(),
+                    Pesel = row.Cells[3].Value.ToString(),
+                    DataUrodzenia = Convert.ToDateTime(row.Cells[4].Value.ToString()),
+                    KolorSkory = row.Cells[5].Value.ToString(),
+                    NazwaWojewodztwa = row.Cells[6].Value.ToString(),
+                    Zawod = row.Cells[7].Value.ToString(),
+                });
             }
-            people.Clear();
-            LoadPeopleFromBase(con);
+
+            Microsoft.Office.Interop.Excel.Application xlApp;
+            Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+            xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Add();
+            xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            xlWorkSheet.Cells[1, 1] = "ID";
+            xlWorkSheet.Cells[1, 2] = "Imię";
+            xlWorkSheet.Cells[1, 3] = "Nazwisko";
+            xlWorkSheet.Cells[1, 4] = "Pesel";
+            xlWorkSheet.Cells[1, 5] = "Data ur.";
+            xlWorkSheet.Cells[1, 6] = "Kolor skóry";
+            xlWorkSheet.Cells[1, 7] = "Województwo";
+            xlWorkSheet.Cells[1, 8] = "Zawód";
+
+            int rowIndex = 2;
+            foreach (Person person in selectedPerson)
+            {
+                xlWorkSheet.Cells[rowIndex, 1] = person.ID_Osoby.ToString();
+                xlWorkSheet.Cells[rowIndex, 2] = person.Imie;
+                xlWorkSheet.Cells[rowIndex, 3] = person.Nazwisko;
+                xlWorkSheet.Cells[rowIndex, 4] = "'" + person.Pesel;
+                xlWorkSheet.Cells[rowIndex, 5] = person.DataUrodzenia.ToShortDateString();
+                xlWorkSheet.Cells[rowIndex, 6] = person.KolorSkory;
+                xlWorkSheet.Cells[rowIndex, 7] = person.NazwaWojewodztwa.ToString();
+                xlWorkSheet.Cells[rowIndex, 8] = person.Zawod;
+                rowIndex++;
+            }
+            xlApp.Visible = true;
+            Cursor.Current = Cursors.Arrow;
+            buttonsPanel.Enabled = true;
         }
     }
 }

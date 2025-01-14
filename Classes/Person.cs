@@ -2,7 +2,7 @@
 
 namespace LudziePolska.Classes
 {
-    internal class Person
+    public class Person
     {
         public int ID_Osoby { get; set; }
         public string Imie { get; set; }

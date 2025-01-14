@@ -1,6 +1,6 @@
 ﻿namespace LudziePolska.Classes
 {
-    static internal class GlobalVars
+    static internal class ConnectionString
     {
         public static string GetConnectionString()
         {

@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.removeFiltersBtn = new System.Windows.Forms.Button();
             this.skinColorCombo = new System.Windows.Forms.ComboBox();
             this.proffessionCombo = new System.Windows.Forms.ComboBox();
             this.dateToPicker = new System.Windows.Forms.DateTimePicker();
@@ -40,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.noOfRecordsLbl = new System.Windows.Forms.Label();
             this.provinceTxt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.nameTxt = new System.Windows.Forms.TextBox();
@@ -47,17 +49,16 @@
             this.peselTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.peopleDGV = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonsPanel = new System.Windows.Forms.Panel();
+            this.showLogFile = new System.Windows.Forms.Button();
+            this.exportSelectedBtn = new System.Windows.Forms.Button();
+            this.exportProvinceBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
-            this.noOfRecordsLbl = new System.Windows.Forms.Label();
-            this.removeFiltersBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleDGV)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.buttonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -78,6 +79,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtruj";
+            // 
+            // removeFiltersBtn
+            // 
+            this.removeFiltersBtn.Location = new System.Drawing.Point(497, 38);
+            this.removeFiltersBtn.Name = "removeFiltersBtn";
+            this.removeFiltersBtn.Size = new System.Drawing.Size(63, 43);
+            this.removeFiltersBtn.TabIndex = 8;
+            this.removeFiltersBtn.Text = "Usuń filtry";
+            this.removeFiltersBtn.UseVisualStyleBackColor = true;
+            this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
             // 
             // skinColorCombo
             // 
@@ -171,6 +182,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Wyszukaj";
             // 
+            // noOfRecordsLbl
+            // 
+            this.noOfRecordsLbl.AutoSize = true;
+            this.noOfRecordsLbl.Location = new System.Drawing.Point(358, 79);
+            this.noOfRecordsLbl.Name = "noOfRecordsLbl";
+            this.noOfRecordsLbl.Size = new System.Drawing.Size(108, 13);
+            this.noOfRecordsLbl.TabIndex = 14;
+            this.noOfRecordsLbl.Text = "Ilość rekordów: 0";
+            // 
             // provinceTxt
             // 
             this.provinceTxt.Location = new System.Drawing.Point(155, 71);
@@ -228,23 +248,23 @@
             this.peopleDGV.AllowUserToDeleteRows = false;
             this.peopleDGV.BackgroundColor = System.Drawing.Color.White;
             this.peopleDGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.peopleDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.peopleDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.peopleDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.peopleDGV.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.peopleDGV.DefaultCellStyle = dataGridViewCellStyle4;
             this.peopleDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.peopleDGV.EnableHeadersVisualStyles = false;
             this.peopleDGV.Location = new System.Drawing.Point(3, 203);
@@ -254,39 +274,53 @@
             this.peopleDGV.Size = new System.Drawing.Size(929, 439);
             this.peopleDGV.TabIndex = 9;
             // 
-            // panel1
+            // buttonsPanel
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.deleteBtn);
-            this.panel1.Controls.Add(this.addBtn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 642);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(3);
-            this.panel1.Size = new System.Drawing.Size(929, 52);
-            this.panel1.TabIndex = 10;
+            this.buttonsPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonsPanel.Controls.Add(this.showLogFile);
+            this.buttonsPanel.Controls.Add(this.exportSelectedBtn);
+            this.buttonsPanel.Controls.Add(this.exportProvinceBtn);
+            this.buttonsPanel.Controls.Add(this.deleteBtn);
+            this.buttonsPanel.Controls.Add(this.addBtn);
+            this.buttonsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonsPanel.Location = new System.Drawing.Point(3, 642);
+            this.buttonsPanel.Name = "buttonsPanel";
+            this.buttonsPanel.Padding = new System.Windows.Forms.Padding(3);
+            this.buttonsPanel.Size = new System.Drawing.Size(929, 52);
+            this.buttonsPanel.TabIndex = 10;
             // 
-            // button2
+            // showLogFile
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button2.Location = new System.Drawing.Point(300, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 46);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Eksport wybranych";
-            this.button2.UseVisualStyleBackColor = true;
+            this.showLogFile.Dock = System.Windows.Forms.DockStyle.Right;
+            this.showLogFile.Location = new System.Drawing.Point(827, 3);
+            this.showLogFile.Name = "showLogFile";
+            this.showLogFile.Size = new System.Drawing.Size(99, 46);
+            this.showLogFile.TabIndex = 4;
+            this.showLogFile.Text = "Log";
+            this.showLogFile.UseVisualStyleBackColor = true;
+            this.showLogFile.Click += new System.EventHandler(this.showLogFile_Click);
             // 
-            // button1
+            // exportSelectedBtn
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.Location = new System.Drawing.Point(201, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 46);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Eksport województwo";
-            this.button1.UseVisualStyleBackColor = true;
+            this.exportSelectedBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.exportSelectedBtn.Location = new System.Drawing.Point(300, 3);
+            this.exportSelectedBtn.Name = "exportSelectedBtn";
+            this.exportSelectedBtn.Size = new System.Drawing.Size(99, 46);
+            this.exportSelectedBtn.TabIndex = 3;
+            this.exportSelectedBtn.Text = "Eksport wybranych";
+            this.exportSelectedBtn.UseVisualStyleBackColor = true;
+            this.exportSelectedBtn.Click += new System.EventHandler(this.exportSelectedBtn_Click);
+            // 
+            // exportProvinceBtn
+            // 
+            this.exportProvinceBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.exportProvinceBtn.Location = new System.Drawing.Point(201, 3);
+            this.exportProvinceBtn.Name = "exportProvinceBtn";
+            this.exportProvinceBtn.Size = new System.Drawing.Size(99, 46);
+            this.exportProvinceBtn.TabIndex = 2;
+            this.exportProvinceBtn.Text = "Eksport województwo";
+            this.exportProvinceBtn.UseVisualStyleBackColor = true;
+            this.exportProvinceBtn.Click += new System.EventHandler(this.exportProvinceBtn_Click);
             // 
             // deleteBtn
             // 
@@ -310,25 +344,6 @@
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // noOfRecordsLbl
-            // 
-            this.noOfRecordsLbl.AutoSize = true;
-            this.noOfRecordsLbl.Location = new System.Drawing.Point(358, 79);
-            this.noOfRecordsLbl.Name = "noOfRecordsLbl";
-            this.noOfRecordsLbl.Size = new System.Drawing.Size(108, 13);
-            this.noOfRecordsLbl.TabIndex = 14;
-            this.noOfRecordsLbl.Text = "Ilość rekordów: 0";
-            // 
-            // removeFiltersBtn
-            // 
-            this.removeFiltersBtn.Location = new System.Drawing.Point(497, 38);
-            this.removeFiltersBtn.Name = "removeFiltersBtn";
-            this.removeFiltersBtn.Size = new System.Drawing.Size(63, 43);
-            this.removeFiltersBtn.TabIndex = 8;
-            this.removeFiltersBtn.Text = "Usuń filtry";
-            this.removeFiltersBtn.UseVisualStyleBackColor = true;
-            this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -336,7 +351,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(935, 697);
             this.Controls.Add(this.peopleDGV);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.buttonsPanel);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -351,7 +366,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.peopleDGV)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.buttonsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -375,13 +390,14 @@
         private System.Windows.Forms.TextBox peselTxt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView peopleDGV;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel buttonsPanel;
+        private System.Windows.Forms.Button exportSelectedBtn;
+        private System.Windows.Forms.Button exportProvinceBtn;
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Label noOfRecordsLbl;
         private System.Windows.Forms.Button removeFiltersBtn;
+        private System.Windows.Forms.Button showLogFile;
     }
 }
 

@@ -34,7 +34,7 @@ namespace LudziePolska
             if (HasErrors())
                 return;
 
-            SqlConnection con = new SqlConnection(GlobalVars.GetConnectionString());
+            SqlConnection con = new SqlConnection(ConnectionString.GetConnectionString());
             try
             {
                 con.Open();
