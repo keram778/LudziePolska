@@ -104,7 +104,7 @@
             this.removeFiltersBtn.Location = new System.Drawing.Point(584, 23);
             this.removeFiltersBtn.Name = "removeFiltersBtn";
             this.removeFiltersBtn.Size = new System.Drawing.Size(63, 43);
-            this.removeFiltersBtn.TabIndex = 8;
+            this.removeFiltersBtn.TabIndex = 7;
             this.toolTip1.SetToolTip(this.removeFiltersBtn, "Usuń filtry");
             this.removeFiltersBtn.UseVisualStyleBackColor = true;
             this.removeFiltersBtn.Click += new System.EventHandler(this.removeFiltersBtn_Click);
@@ -114,7 +114,7 @@
             this.provinceTxt.Location = new System.Drawing.Point(134, 109);
             this.provinceTxt.Name = "provinceTxt";
             this.provinceTxt.Size = new System.Drawing.Size(152, 21);
-            this.provinceTxt.TabIndex = 13;
+            this.provinceTxt.TabIndex = 6;
             this.provinceTxt.TextChanged += new System.EventHandler(this.provinceTxt_TextChanged);
             // 
             // skinColorCombo
@@ -124,7 +124,7 @@
             this.skinColorCombo.Location = new System.Drawing.Point(402, 23);
             this.skinColorCombo.Name = "skinColorCombo";
             this.skinColorCombo.Size = new System.Drawing.Size(150, 21);
-            this.skinColorCombo.TabIndex = 7;
+            this.skinColorCombo.TabIndex = 1;
             this.skinColorCombo.SelectedIndexChanged += new System.EventHandler(this.skinColorCombo_SelectedIndexChanged);
             // 
             // label7
@@ -144,7 +144,7 @@
             this.proffessionCombo.Location = new System.Drawing.Point(134, 23);
             this.proffessionCombo.Name = "proffessionCombo";
             this.proffessionCombo.Size = new System.Drawing.Size(152, 21);
-            this.proffessionCombo.TabIndex = 6;
+            this.proffessionCombo.TabIndex = 0;
             this.proffessionCombo.SelectedIndexChanged += new System.EventHandler(this.proffessionCombo_SelectedIndexChanged);
             // 
             // nameTxt
@@ -152,7 +152,7 @@
             this.nameTxt.Location = new System.Drawing.Point(402, 79);
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(150, 21);
-            this.nameTxt.TabIndex = 11;
+            this.nameTxt.TabIndex = 5;
             this.nameTxt.TextChanged += new System.EventHandler(this.nameTxt_TextChanged);
             // 
             // dateToPicker
@@ -161,7 +161,7 @@
             this.dateToPicker.Location = new System.Drawing.Point(402, 52);
             this.dateToPicker.Name = "dateToPicker";
             this.dateToPicker.Size = new System.Drawing.Size(150, 21);
-            this.dateToPicker.TabIndex = 5;
+            this.dateToPicker.TabIndex = 3;
             this.dateToPicker.ValueChanged += new System.EventHandler(this.dateToPicker_ValueChanged);
             // 
             // label6
@@ -189,7 +189,7 @@
             this.peselTxt.Location = new System.Drawing.Point(134, 79);
             this.peselTxt.Name = "peselTxt";
             this.peselTxt.Size = new System.Drawing.Size(152, 21);
-            this.peselTxt.TabIndex = 9;
+            this.peselTxt.TabIndex = 4;
             this.peselTxt.TextChanged += new System.EventHandler(this.peselTxt_TextChanged);
             // 
             // dateFromPicker
@@ -198,7 +198,7 @@
             this.dateFromPicker.Location = new System.Drawing.Point(134, 52);
             this.dateFromPicker.Name = "dateFromPicker";
             this.dateFromPicker.Size = new System.Drawing.Size(152, 21);
-            this.dateFromPicker.TabIndex = 3;
+            this.dateFromPicker.TabIndex = 2;
             this.dateFromPicker.Value = new System.DateTime(1920, 1, 1, 0, 0, 0, 0);
             this.dateFromPicker.ValueChanged += new System.EventHandler(this.dateFromPicker_ValueChanged);
             // 
@@ -295,7 +295,7 @@
             this.showLogFile.Location = new System.Drawing.Point(823, 3);
             this.showLogFile.Name = "showLogFile";
             this.showLogFile.Size = new System.Drawing.Size(99, 46);
-            this.showLogFile.TabIndex = 4;
+            this.showLogFile.TabIndex = 12;
             this.showLogFile.Text = "Log";
             this.toolTip1.SetToolTip(this.showLogFile, "Otwórz plik logu");
             this.showLogFile.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@
             this.exportSelectedBtn.Location = new System.Drawing.Point(412, 3);
             this.exportSelectedBtn.Name = "exportSelectedBtn";
             this.exportSelectedBtn.Size = new System.Drawing.Size(202, 46);
-            this.exportSelectedBtn.TabIndex = 3;
+            this.exportSelectedBtn.TabIndex = 11;
             this.exportSelectedBtn.Text = "Eksport wybranych";
             this.toolTip1.SetToolTip(this.exportSelectedBtn, "Eksportuj wybrane \r\nosoby do pliku excel");
             this.exportSelectedBtn.UseVisualStyleBackColor = true;
@@ -323,7 +323,7 @@
             this.exportProvinceBtn.Location = new System.Drawing.Point(210, 3);
             this.exportProvinceBtn.Name = "exportProvinceBtn";
             this.exportProvinceBtn.Size = new System.Drawing.Size(202, 46);
-            this.exportProvinceBtn.TabIndex = 2;
+            this.exportProvinceBtn.TabIndex = 10;
             this.exportProvinceBtn.Text = "Eksport województwo";
             this.toolTip1.SetToolTip(this.exportProvinceBtn, "Eksportuj osoby z \r\nwybranego województwa\r\ndo pliku excel");
             this.exportProvinceBtn.UseVisualStyleBackColor = true;
@@ -337,7 +337,7 @@
             this.deleteBtn.Location = new System.Drawing.Point(108, 3);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(102, 46);
-            this.deleteBtn.TabIndex = 1;
+            this.deleteBtn.TabIndex = 9;
             this.deleteBtn.Text = "Usuń";
             this.toolTip1.SetToolTip(this.deleteBtn, "Usuń osobę");
             this.deleteBtn.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@
             this.addBtn.Location = new System.Drawing.Point(3, 3);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(105, 46);
-            this.addBtn.TabIndex = 0;
+            this.addBtn.TabIndex = 8;
             this.addBtn.Text = "Dodaj";
             this.toolTip1.SetToolTip(this.addBtn, "Dodaj osobę");
             this.addBtn.UseVisualStyleBackColor = true;
