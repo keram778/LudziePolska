@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>human_resources__1__0ha_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -58,6 +61,7 @@
       <DependentUpon>AddPersonForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BaseQuerries\Querries.cs" />
+    <Compile Include="Classes\ExportToExcel.cs" />
     <Compile Include="Classes\ExtensionMethods.cs" />
     <Compile Include="Classes\ConnectionString.cs" />
     <Compile Include="Classes\Person.cs" />
@@ -135,6 +139,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="human_resources__1__0ha_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,5 +12,6 @@ namespace LudziePolska.Classes
         public string KolorSkory { get; set; }
         public string NazwaWojewodztwa { get; set; }
         public string Zawod { get; set; }
+        public int ID_Wojewodztwo { get; set; }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPersonForm));
             this.label7 = new System.Windows.Forms.Label();
             this.nameTxt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -135,11 +136,13 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(255, 214);
+            this.saveBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveBtn.Image")));
+            this.saveBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.saveBtn.Location = new System.Drawing.Point(196, 214);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(78, 43);
+            this.saveBtn.Size = new System.Drawing.Size(137, 43);
             this.saveBtn.TabIndex = 7;
-            this.saveBtn.Text = "Dodaj";
+            this.saveBtn.Text = "Zapisz";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
@@ -199,7 +202,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.peselTxt);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddPersonForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dodaj osobę";
